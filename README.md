@@ -215,6 +215,12 @@ LangGraph/
 │   ├── 📄 Parallel Workflow 2.py   ← UPSE Essay Evaluator (parallel LLM evaluation)
 │   └── 📄 README.md                ← Docs for this section
 │
+├── 📁 Conditional Workflow/
+│   ├── 📄 Conditional Workflow.py   ← Quadratic Equation Solver (discriminant routing)
+│   ├── 📄 Conditional Workflow 1.py ← Voter Eligibility Checker (multi-step validation)
+│   ├── 📄 Conditional Workflow 2.py ← Medical Report Analyzer (LLM sentiment routing)
+│   └── 📄 README.md                ← Docs for this section
+│
 └── 📁 langvenv/                    ← Python virtual environment
 ```
 
@@ -236,6 +242,12 @@ Three examples of **parallel execution** where multiple nodes run simultaneously
 1. **Cricket Player Stats** — Three stats computed in parallel, then summarized.
 2. **Structured LLM Output** — Using Pydantic `BaseModel` to force the LLM to return typed data.
 3. **UPSE Essay Evaluator** — Three LLM evaluators run in parallel (language, analysis, clarity), then an aggregator produces the overall score.
+
+### Module 4: Conditional Workflow — [`Conditional Workflow/`](./Conditional%20Workflow/)
+Three examples of **conditional routing** where the next node is chosen at runtime based on the current state:
+1. **Quadratic Equation Solver** — Routes based on discriminant value (D > 0 / D = 0 / D < 0). Pure math, no LLM.
+2. **Voter Eligibility Checker** — Multi-step conditional validation (age → citizenship → criminal record) with early exit on failure.
+3. **Medical Report Analyzer** — LLM classifies report sentiment, then routes to positive/negative/neutral response handlers with structured output.
 
 ---
 
@@ -358,6 +370,15 @@ python "Parallel Workflow/Parallel Workflow 1.py"
 
 # Parallel Workflow — UPSE Essay Evaluator
 python "Parallel Workflow/Parallel Workflow 2.py"
+
+# Conditional Workflow — Quadratic Equation Solver
+python "Conditional Workflow/Conditional Workflow.py"
+
+# Conditional Workflow — Voter Eligibility Checker
+python "Conditional Workflow/Conditional Workflow 1.py"
+
+# Conditional Workflow — Medical Report Analyzer
+python "Conditional Workflow/Conditional Workflow 2.py"
 ```
 
 ---
