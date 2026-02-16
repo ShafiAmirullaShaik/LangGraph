@@ -221,6 +221,14 @@ LangGraph/
 │   ├── 📄 Conditional Workflow 2.py ← Medical Report Analyzer (LLM sentiment routing)
 │   └── 📄 README.md                ← Docs for this section
 │
+├── 📄 Persistence.ipynb             ← Persistence & Checkpointing (notebook)
+│
+├── 📁 Streamlit/
+│   └── 📁 STM Bot.py/
+│       ├── 📄 Bot.py               ← LangGraph backend (graph + checkpointer)
+│       ├── 📄 app.py               ← Streamlit chat UI (frontend)
+│       └── 📄 README.md            ← Docs for this section
+│
 └── 📁 langvenv/                    ← Python virtual environment
 ```
 
@@ -249,6 +257,21 @@ Three examples of **conditional routing** where the next node is chosen at runti
 2. **Voter Eligibility Checker** — Multi-step conditional validation (age → citizenship → criminal record) with early exit on failure.
 3. **Medical Report Analyzer** — LLM classifies report sentiment, then routes to positive/negative/neutral response handlers with structured output.
 
+### Module 5: Persistence & Checkpointing — [`Persistence.ipynb`](./Persistence.ipynb)
+A Jupyter notebook exploring **how LangGraph saves and restores state** across invocations. Covers:
+1. **Joke Generator with Checkpointing** — A 2-node graph (`generate_joke` → `explain_joke`) compiled with `InMemorySaver`.
+2. **State Inspection** — Using `get_state()` and `get_state_history()` to view all checkpoints.
+3. **Short-Term Memory Chatbot** — `add_messages` reducer + checkpointing for conversation memory.
+4. **Fault Tolerance** — Simulating a crash and resuming from the last successful checkpoint.
+5. **Time Travel** — Going back to a previous checkpoint and re-running from there.
+6. **Updating State** — Manually modifying state at a specific checkpoint with `update_state()`.
+
+### Module 6: Streamlit STM Bot — [`Streamlit/STM Bot.py/`](./Streamlit/STM%20Bot.py/)
+A **web-based chat UI** built with Streamlit that brings the Short-Term Memory chatbot to life:
+- **`Bot.py`** — LangGraph backend: defines the graph, state, chat node, and compiles with `MemorySaver`.
+- **`app.py`** — Streamlit frontend: polished chat interface with gradient sidebar, thread switching, persistent history, and custom CSS.
+- Supports **multiple conversation threads** — switch between them without losing history.
+
 ---
 
 ## 🛠️ Tech Stack
@@ -262,6 +285,7 @@ Three examples of **conditional routing** where the next node is chosen at runti
 | [Groq API](https://console.groq.com/) | Ultra-fast LLM inference (Llama 3.3 70B) |
 | [Pydantic](https://docs.pydantic.dev/) | Data validation & structured output |
 | [python-dotenv](https://pypi.org/project/python-dotenv/) | Load environment variables from `.env` file |
+| [Streamlit](https://streamlit.io/) | Web UI for the chatbot |
 
 ---
 
@@ -326,6 +350,7 @@ This will install:
 - `python-dotenv` — Environment variable management
 - `langgraph` — Graph-based workflow orchestration
 - `pydantic` — Data validation for structured output
+- `streamlit` — Web UI framework for the chatbot
 
 ### Step 5: Configure Environment Variables
 
@@ -379,6 +404,10 @@ python "Conditional Workflow/Conditional Workflow 1.py"
 
 # Conditional Workflow — Medical Report Analyzer
 python "Conditional Workflow/Conditional Workflow 2.py"
+
+# Streamlit STM Bot — Web chat UI
+cd "Streamlit/STM Bot.py"
+streamlit run app.py
 ```
 
 ---
