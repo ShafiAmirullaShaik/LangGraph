@@ -224,9 +224,14 @@ LangGraph/
 ├── 📄 Persistence.ipynb             ← Persistence & Checkpointing (notebook)
 │
 ├── 📁 Streamlit/
-│   └── 📁 STM Bot.py/
-│       ├── 📄 Bot.py               ← LangGraph backend (graph + checkpointer)
-│       ├── 📄 app.py               ← Streamlit chat UI (frontend)
+│   ├── 📁 STM Bot.py/
+│   │   ├── 📄 Bot.py               ← LangGraph backend (graph + checkpointer)
+│   │   ├── 📄 app.py               ← Streamlit chat UI (frontend)
+│   │   └── 📄 README.md            ← Docs for this section
+│   │
+│   └── 📁 Streaming/
+│       ├── 📄 Bot.py               ← LangGraph backend (same graph)
+│       ├── 📄 app.py               ← Streamlit UI with token streaming
 │       └── 📄 README.md            ← Docs for this section
 │
 └── 📁 langvenv/                    ← Python virtual environment
@@ -271,6 +276,12 @@ A **web-based chat UI** built with Streamlit that brings the Short-Term Memory c
 - **`Bot.py`** — LangGraph backend: defines the graph, state, chat node, and compiles with `MemorySaver`.
 - **`app.py`** — Streamlit frontend: polished chat interface with gradient sidebar, thread switching, persistent history, and custom CSS.
 - Supports **multiple conversation threads** — switch between them without losing history.
+
+### Module 7: Streaming Chat Bot — [`Streamlit/Streaming/`](./Streamlit/Streaming/)
+Builds on Module 6 by adding **real-time token-by-token streaming** — text appears word by word like ChatGPT:
+- Uses `app.stream(stream_mode="messages")` instead of `app.invoke()` for token-level output.
+- A **Python generator** (`yield`) feeds tokens one at a time to `st.write_stream()` for instant display.
+- Memory still works — LangGraph auto-saves the checkpoint after streaming completes.
 
 ---
 
@@ -407,6 +418,10 @@ python "Conditional Workflow/Conditional Workflow 2.py"
 
 # Streamlit STM Bot — Web chat UI
 cd "Streamlit/STM Bot.py"
+streamlit run app.py
+
+# Streaming Chat Bot — Real-time token streaming
+cd "Streamlit/Streaming"
 streamlit run app.py
 ```
 
