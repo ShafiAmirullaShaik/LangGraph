@@ -20,6 +20,7 @@
 - [How to Run](#-how-to-run)
 - [Example Graph Flow](#-example-graph-flow)
 - [Common Errors & Fixes](#-common-errors--fixes)
+- [Interview Preparation](#-interview-preparation)
 - [Resources](#-resources)
 
 ---
@@ -234,6 +235,14 @@ LangGraph/
 │       ├── 📄 app.py               ← Streamlit UI with token streaming
 │       └── 📄 README.md            ← Docs for this section
 │
+├── 📁 Interview Prep/
+│   ├── 📄 README.md                ← Interview prep guide & navigation
+│   ├── 📄 01_MCQ.md                ← 55+ multiple-choice questions
+│   ├── 📄 02_QnA.md                ← 55+ Q&A explanations
+│   ├── 📄 03_Coding_Exercises.md   ← 13+ hands-on coding problems
+│   ├── 📄 04_Scenario_Based.md     ← 15+ real-world scenarios
+│   └── 📄 05_Cheat_Sheet.md        ← Quick-reference cheat sheet
+│
 └── 📁 langvenv/                    ← Python virtual environment
 ```
 
@@ -282,6 +291,14 @@ Builds on Module 6 by adding **real-time token-by-token streaming** — text app
 - Uses `app.stream(stream_mode="messages")` instead of `app.invoke()` for token-level output.
 - A **Python generator** (`yield`) feeds tokens one at a time to `st.write_stream()` for instant display.
 - Memory still works — LangGraph auto-saves the checkpoint after streaming completes.
+
+### Module 8: Interview Preparation — [`Interview Prep/`](./Interview%20Prep/)
+A **comprehensive, one-stop interview preparation guide** covering LangGraph from basic to advanced:
+- **55+ MCQs** with hidden answers across 3 difficulty levels
+- **55+ Q&A explanations** with code examples and in-depth analysis
+- **13+ coding exercises** with full runnable solutions
+- **15+ real-world scenarios** — system design, debugging, architecture decisions
+- **Quick-reference cheat sheet** for last-minute revision
 
 ---
 
