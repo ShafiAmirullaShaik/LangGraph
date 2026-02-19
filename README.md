@@ -225,14 +225,14 @@ LangGraph/
 ├── 📄 Persistence.ipynb             ← Persistence & Checkpointing (notebook)
 │
 ├── 📁 Streamlit/
-│   ├── 📁 STM Bot.py/
-│   │   ├── 📄 Bot.py               ← LangGraph backend (graph + checkpointer)
-│   │   ├── 📄 app.py               ← Streamlit chat UI (frontend)
+│   ├── 📁 Streaming/
+│   │   ├── 📄 Bot.py               ← LangGraph backend (same graph)
+│   │   ├── 📄 app.py               ← Streamlit UI with token streaming
 │   │   └── 📄 README.md            ← Docs for this section
 │   │
-│   └── 📁 Streaming/
-│       ├── 📄 Bot.py               ← LangGraph backend (same graph)
-│       ├── 📄 app.py               ← Streamlit UI with token streaming
+│   └── 📁 DB Bot/
+│       ├── 📄 app.py               ← LangGraph backend (SqliteSaver)
+│       ├── 📄 bot.py               ← Streamlit UI with streaming + SQLite persistence
 │       └── 📄 README.md            ← Docs for this section
 │
 ├── 📁 Interview Prep/
@@ -292,7 +292,14 @@ Builds on Module 6 by adding **real-time token-by-token streaming** — text app
 - A **Python generator** (`yield`) feeds tokens one at a time to `st.write_stream()` for instant display.
 - Memory still works — LangGraph auto-saves the checkpoint after streaming completes.
 
-### Module 8: Interview Preparation — [`Interview Prep/`](./Interview%20Prep/)
+### Module 8: DB Bot — [`Streamlit/DB Bot/`](./Streamlit/DB%20Bot/)
+Builds on Module 7 by replacing in-memory checkpointing with **SQLite-based persistence** — conversations survive app restarts:
+- Uses `SqliteSaver` instead of `MemorySaver` — all checkpoints stored in a local `chatbot.db` file.
+- **Thread recovery on startup** — `get_all_threads()` reads all thread IDs from SQLite and restores the sidebar.
+- Real-time **token streaming** still works — combines streaming with persistent storage.
+- `check_same_thread=False` on the SQLite connection for Streamlit multi-thread compatibility.
+
+### Module 9: Interview Preparation — [`Interview Prep/`](./Interview%20Prep/)
 A **comprehensive, one-stop interview preparation guide** covering LangGraph from basic to advanced:
 - **55+ MCQs** with hidden answers across 3 difficulty levels
 - **55+ Q&A explanations** with code examples and in-depth analysis
@@ -440,6 +447,10 @@ streamlit run app.py
 # Streaming Chat Bot — Real-time token streaming
 cd "Streamlit/Streaming"
 streamlit run app.py
+
+# DB Bot — SQLite persistent chatbot with streaming
+cd "Streamlit/DB Bot"
+streamlit run bot.py
 ```
 
 ---

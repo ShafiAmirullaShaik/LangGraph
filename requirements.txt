@@ -5,3 +5,5 @@ langchain-groq
 python-dotenv
 langgraph
 pydantic
+streamlit
+langgraph-checkpoint-sqlite
